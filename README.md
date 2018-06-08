@@ -3,6 +3,8 @@
 Easily manage custom mouse/trackpad acceleration speeds on a per-app basis with
 a JSON file.
 
+![Menubar Screenshot](https://owo.whats-th.is/5983c9.png)
+
 ## Configuring
 
 Upon launch, the app will create the configuration for you if non-existent:
