@@ -45,7 +45,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // object(
         //   key: app (string, bundle id/app name),
         //   value: object(
-        //     key: device (string, "mouse" | "touchpad"),
+        //     key: device (string, "mouse" | "trackpad"),
         //     value: acceleration (double)
         //   )
         // )
