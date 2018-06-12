@@ -99,7 +99,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func applyProfile(_ profile: Profile) {
-        if self.profileAlreadyApplied(profile) {
+        guard !self.profileAlreadyApplied(profile) else {
             NSLog("Profile already applied, skipping.")
             return
         }
