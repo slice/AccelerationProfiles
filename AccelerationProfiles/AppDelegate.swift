@@ -88,8 +88,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         self.applyProfile(defaultProfile)
     }
+
+    func profileAlreadyApplied(_ profile: [String: Double]) -> Bool {
+        return !profile.map({
+            (deviceName, accel) in
+            PointerDevice(rawValue: deviceName)!.speed == accel
+        }).contains(false)
+    }
     
     func applyProfile(_ profile: [String: Double]) {
+        if self.profileAlreadyApplied(profile) {
+            NSLog("Profile already applied, skipping.")
+            return
+        }
+
         for (deviceName, accel) in profile {
             var device = PointerDevice(rawValue: deviceName)!
             NSLog("Tweaking \(deviceName): \(device.speed) -> \(accel)")
