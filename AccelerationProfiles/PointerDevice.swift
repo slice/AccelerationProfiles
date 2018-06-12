@@ -18,20 +18,24 @@ enum PointerDevice: String {
     var speed: Double {
         get {
             var speed: Double = 0
+            let handle = NXOpenEventStatus()
             IOHIDGetAccelerationWithKey(
-                NXOpenEventStatus(),
+                handle,
                 self.accelerationType as CFString,
                 &speed
             )
+            NXCloseEventStatus(handle)
             return speed
         }
 
         set {
+            let handle = NXOpenEventStatus()
             IOHIDSetAccelerationWithKey(
-                NXOpenEventStatus(),
+                handle,
                 self.accelerationType as CFString,
                 newValue
             )
+            NXCloseEventStatus(handle)
         }
     }
 }
