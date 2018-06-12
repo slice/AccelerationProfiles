@@ -1,12 +1,14 @@
 import Cocoa
 
+typealias Profile = [String: Double]
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var window: NSWindow!
     let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
-    var rules: [String: [String: Double]] = [:]
+    var rules: [String: Profile] = [:]
     
-    var defaultAccelProfile: [String: Double]? {
+    var defaultAccelProfile: Profile? {
         return rules["*"]
     }
     
@@ -51,7 +53,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // )
         let dict = json as! [String: Any]
         for (identifier, profile) in dict {
-            let accel = profile as! [String: Double]
+            let accel = profile as! Profile
             self.rules[identifier] = accel
         }
         
@@ -89,14 +91,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.applyProfile(defaultProfile)
     }
 
-    func profileAlreadyApplied(_ profile: [String: Double]) -> Bool {
+    func profileAlreadyApplied(_ profile: Profile) -> Bool {
         return !profile.map({
             (deviceName, accel) in
             PointerDevice(rawValue: deviceName)!.speed == accel
         }).contains(false)
     }
     
-    func applyProfile(_ profile: [String: Double]) {
+    func applyProfile(_ profile: Profile) {
         if self.profileAlreadyApplied(profile) {
             NSLog("Profile already applied, skipping.")
             return
