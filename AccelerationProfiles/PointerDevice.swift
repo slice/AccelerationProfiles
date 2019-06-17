@@ -15,7 +15,7 @@ enum PointerDevice: String {
         }
     }
     
-    var speed: Double {
+    var acceleration: Double {
         get {
             var speed: Double = 0
             let handle = NXOpenEventStatus()

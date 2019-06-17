@@ -12,14 +12,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return rules["*"]
     }
     
-    var applicationSupport: URL {
-        return FileManager.default
+    var configDir: URL {
+        let applicationSupport = FileManager.default
             .urls(for: .applicationSupportDirectory, in: .userDomainMask)
             .first!
-    }
-    
-    var configDir: URL {
-        return self.applicationSupport / "AccelerationProfiles"
+        return applicationSupport / "AccelerationProfiles"
     }
     
     var configPath: URL {
@@ -79,7 +76,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let bundle = app.bundleIdentifier ?? "<none>"
         let name = app.localizedName ?? "<none>"
         NSLog("Now focused. [bundle: \(bundle)] [name: \(name)]")
-        self.applyProfileFromIdentifiers(withIdentifiers: [bundle, name])
+        self.applyProfileFromIdentifiers([bundle, name])
     }
     
     func applyDefaultProfile() {
@@ -92,10 +89,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func profileAlreadyApplied(_ profile: Profile) -> Bool {
-        return !profile.map({
-            (deviceName, accel) in
-            PointerDevice(rawValue: deviceName)!.speed == accel
-        }).contains(false)
+        // The profile is already applied if all of the accelerations specified
+        // for each device are already satisfied.
+        return profile.allSatisfy({ (deviceName, acceleration) in
+            PointerDevice(rawValue: deviceName)!.acceleration == acceleration
+        })
     }
     
     func applyProfile(_ profile: Profile) {
@@ -106,12 +104,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         for (deviceName, accel) in profile {
             var device = PointerDevice(rawValue: deviceName)!
-            NSLog("Tweaking \(deviceName): \(device.speed) -> \(accel)")
-            device.speed = accel
+            NSLog("Tweaking \(deviceName): \(device.acceleration) -> \(accel)")
+            device.acceleration = accel
         }
     }
     
-    func applyProfileFromIdentifiers(withIdentifiers identifiers: [String]) {
+    func applyProfileFromIdentifiers(_ identifiers: [String]) {
         NSLog("Attempting to apply profile for identifiers: \(identifiers)")
 
         guard let (_, profile) = self.rules.first(where: { (ident, _) in identifiers.contains(ident) }) else {
@@ -125,30 +123,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func constructMenu() {
         let menu = NSMenu()
-        menu.addItem(NSMenuItem(
-            title: "AccelerationProfiles by slice",
-            action: nil,
-            keyEquivalent: ""
-        ))
-        menu.addItem(NSMenuItem.separator())
-        menu.addItem(NSMenuItem(
-            title: "Open Configuration",
+        menu.addItem(
+            withTitle: "Open Configuration",
             action: #selector(self.openConfiguration),
             keyEquivalent: "o"
-        ))
-        menu.addItem(NSMenuItem(
-            title: "Reload Configuration",
+        )
+        menu.addItem(
+            withTitle: "Reload Configuration",
             action: #selector(self.reloadConfiguration),
             keyEquivalent: "r"
-        ))
-        menu.addItem(NSMenuItem(
-            title: "Quit",
+        )
+        menu.addItem(
+            withTitle: "Quit",
             action: #selector(self.quit),
             keyEquivalent: "q"
-        ))
+        )
         self.item.menu = menu
     }
-    
+
     @objc func quit() {
         NSRunningApplication.current.terminate()
     }
@@ -178,6 +170,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.addImageToButton()
         self.constructMenu()
         self.beginWatching()
+        
+        NSLog("Initial mouse speed: \(PointerDevice.mouse.acceleration)")
+        NSLog("Initial trackpad speed: \(PointerDevice.trackpad.acceleration)")
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
