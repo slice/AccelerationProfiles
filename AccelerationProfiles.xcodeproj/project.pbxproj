@@ -98,6 +98,7 @@
 				TargetAttributes = {
 					125929D920C9EA9800E5BF0F = {
 						CreatedOnToolsVersion = 9.4;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -283,7 +284,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.slice.AccelerationProfiles;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -301,7 +302,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.slice.AccelerationProfiles;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
