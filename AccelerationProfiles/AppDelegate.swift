@@ -2,7 +2,6 @@ import Cocoa
 
 typealias Profile = [String: Double]
 
-@NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var window: NSWindow!
     let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
@@ -92,7 +91,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // The profile is already applied if all of the accelerations specified
         // for each device are already satisfied.
         return profile.allSatisfy({ (deviceName, acceleration) in
-            PointerDevice(rawValue: deviceName)!.acceleration == acceleration
+            HIDDevice(rawValue: deviceName)!.acceleration == acceleration
         })
     }
     
@@ -103,7 +102,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
         for (deviceName, accel) in profile {
-            var device = PointerDevice(rawValue: deviceName)!
+            var device = HIDDevice(rawValue: deviceName)!
             NSLog("Tweaking \(deviceName): \(device.acceleration) -> \(accel)")
             device.acceleration = accel
         }
@@ -170,9 +169,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.addImageToButton()
         self.constructMenu()
         self.beginWatching()
-        
-        NSLog("Initial mouse speed: \(PointerDevice.mouse.acceleration)")
-        NSLog("Initial trackpad speed: \(PointerDevice.trackpad.acceleration)")
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

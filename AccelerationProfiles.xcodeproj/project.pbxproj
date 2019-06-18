@@ -7,20 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		122E22D120C9FDAB00B37258 /* PointerDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122E22D020C9FDAB00B37258 /* PointerDevice.swift */; };
+		1204702F22B8602C002A8BB9 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1204702E22B8602C002A8BB9 /* main.swift */; };
+		122E22D120C9FDAB00B37258 /* HIDDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122E22D020C9FDAB00B37258 /* HIDDevice.swift */; };
 		122E22D320CA191B00B37258 /* URL+Slash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122E22D220CA191B00B37258 /* URL+Slash.swift */; };
 		125929DE20C9EA9800E5BF0F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125929DD20C9EA9800E5BF0F /* AppDelegate.swift */; };
 		125929E020C9EA9900E5BF0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 125929DF20C9EA9900E5BF0F /* Assets.xcassets */; };
-		125929E320C9EA9900E5BF0F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 125929E120C9EA9900E5BF0F /* MainMenu.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		122E22D020C9FDAB00B37258 /* PointerDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointerDevice.swift; sourceTree = "<group>"; };
+		1204702E22B8602C002A8BB9 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		122E22D020C9FDAB00B37258 /* HIDDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HIDDevice.swift; sourceTree = "<group>"; };
 		122E22D220CA191B00B37258 /* URL+Slash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Slash.swift"; sourceTree = "<group>"; };
 		125929DA20C9EA9800E5BF0F /* AccelerationProfiles.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AccelerationProfiles.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		125929DD20C9EA9800E5BF0F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		125929DF20C9EA9900E5BF0F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		125929E220C9EA9900E5BF0F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		125929E420C9EA9900E5BF0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		125929E520C9EA9900E5BF0F /* AccelerationProfiles.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AccelerationProfiles.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -57,11 +57,11 @@
 			children = (
 				125929DD20C9EA9800E5BF0F /* AppDelegate.swift */,
 				125929DF20C9EA9900E5BF0F /* Assets.xcassets */,
-				125929E120C9EA9900E5BF0F /* MainMenu.xib */,
 				125929E420C9EA9900E5BF0F /* Info.plist */,
 				125929E520C9EA9900E5BF0F /* AccelerationProfiles.entitlements */,
-				122E22D020C9FDAB00B37258 /* PointerDevice.swift */,
+				122E22D020C9FDAB00B37258 /* HIDDevice.swift */,
 				122E22D220CA191B00B37258 /* URL+Slash.swift */,
+				1204702E22B8602C002A8BB9 /* main.swift */,
 			);
 			path = AccelerationProfiles;
 			sourceTree = "<group>";
@@ -126,7 +126,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				125929E020C9EA9900E5BF0F /* Assets.xcassets in Resources */,
-				125929E320C9EA9900E5BF0F /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,22 +138,12 @@
 			files = (
 				122E22D320CA191B00B37258 /* URL+Slash.swift in Sources */,
 				125929DE20C9EA9800E5BF0F /* AppDelegate.swift in Sources */,
-				122E22D120C9FDAB00B37258 /* PointerDevice.swift in Sources */,
+				1204702F22B8602C002A8BB9 /* main.swift in Sources */,
+				122E22D120C9FDAB00B37258 /* HIDDevice.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		125929E120C9EA9900E5BF0F /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				125929E220C9EA9900E5BF0F /* Base */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		125929E620C9EA9900E5BF0F /* Debug */ = {
