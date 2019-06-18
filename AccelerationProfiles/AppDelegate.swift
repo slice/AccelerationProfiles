@@ -8,22 +8,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     var rules: [String: Profile] = [:]
-    
+
     var defaultAccelProfile: Profile? {
         return rules["*"]
     }
-    
+
     var configDir: URL {
         let applicationSupport = FileManager.default
             .urls(for: .applicationSupportDirectory, in: .userDomainMask)
             .first!
         return applicationSupport / "AccelerationProfiles"
     }
-    
+
     var configPath: URL {
         return self.configDir / "config.json"
     }
-    
+
     func loadConfiguration() throws {
         let fm = FileManager.default
 
@@ -34,11 +34,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             try fm.createDirectory(at: self.configDir, withIntermediateDirectories: true)
             try "{}".write(to: self.configPath, atomically: false, encoding: .utf8)
         }
-        
+
         // Attempt to read the contents of the file and parse it as JSON.
         let fileContents = fm.contents(atPath: configPath.path)!
         let json = try JSONSerialization.jsonObject(with: fileContents)
-        
+
         self.rules.removeAll(keepingCapacity: true)
 
         // Schema:
@@ -54,15 +54,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             let accel = profile as! Profile
             self.rules[identifier] = accel
         }
-        
+
         NSLog("Loaded rules: \(self.rules)")
     }
-    
+
     func addImageToButton() {
         let button = self.item.button!
         button.image = NSImage(named: "MenuBar")
     }
-    
+
     func beginWatching() {
         NSWorkspace.shared.notificationCenter.addObserver(
             self,
@@ -71,7 +71,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             object: nil
         )
     }
-    
+
     @objc func onFocusChanged(notification: NSNotification) {
         let app = notification.userInfo![NSWorkspace.applicationUserInfoKey]! as! NSRunningApplication
         let bundle = app.bundleIdentifier ?? "<none>"
@@ -79,13 +79,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSLog("Now focused. [bundle: \(bundle)] [name: \(name)]")
         self.applyProfileFromIdentifiers([bundle, name])
     }
-    
+
     func applyDefaultProfile() {
         guard let defaultProfile = self.defaultAccelProfile else {
             NSLog("No default profile was found.")
             return
         }
-        
+
         self.applyProfile(defaultProfile)
     }
 
@@ -96,7 +96,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             HIDDevice(rawValue: deviceName)!.acceleration == acceleration
         })
     }
-    
+
     func applyProfile(_ profile: Profile) {
         guard !self.profileAlreadyApplied(profile) else {
             NSLog("Profile already applied, skipping.")
@@ -109,7 +109,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             device.acceleration = accel
         }
     }
-    
+
     func applyProfileFromIdentifiers(_ identifiers: [String]) {
         NSLog("Attempting to apply profile for identifiers: \(identifiers)")
 
@@ -118,10 +118,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.applyDefaultProfile()
             return
         }
-        
+
         self.applyProfile(profile)
     }
-    
+
     func constructMenu() {
         self.item.menu = self.menu
     }

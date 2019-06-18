@@ -12,7 +12,7 @@ fileprivate func withEventHandle(closure: (NXEventHandle) -> Void) {
 enum HIDDevice: String {
     case mouse
     case trackpad
-    
+
     fileprivate var accelerationTypeKey: String {
         get {
             switch self {
