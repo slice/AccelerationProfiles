@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1204702F22B8602C002A8BB9 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1204702E22B8602C002A8BB9 /* main.swift */; };
+		1204703122B863C2002A8BB9 /* Menu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1204703022B863C2002A8BB9 /* Menu.xib */; };
 		122E22D120C9FDAB00B37258 /* HIDDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122E22D020C9FDAB00B37258 /* HIDDevice.swift */; };
 		122E22D320CA191B00B37258 /* URL+Slash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122E22D220CA191B00B37258 /* URL+Slash.swift */; };
 		125929DE20C9EA9800E5BF0F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125929DD20C9EA9800E5BF0F /* AppDelegate.swift */; };
@@ -15,7 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1204702E22B8602C002A8BB9 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		1204703022B863C2002A8BB9 /* Menu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Menu.xib; sourceTree = "<group>"; };
 		122E22D020C9FDAB00B37258 /* HIDDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HIDDevice.swift; sourceTree = "<group>"; };
 		122E22D220CA191B00B37258 /* URL+Slash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Slash.swift"; sourceTree = "<group>"; };
 		125929DA20C9EA9800E5BF0F /* AccelerationProfiles.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AccelerationProfiles.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,7 +61,7 @@
 				125929E520C9EA9900E5BF0F /* AccelerationProfiles.entitlements */,
 				122E22D020C9FDAB00B37258 /* HIDDevice.swift */,
 				122E22D220CA191B00B37258 /* URL+Slash.swift */,
-				1204702E22B8602C002A8BB9 /* main.swift */,
+				1204703022B863C2002A8BB9 /* Menu.xib */,
 			);
 			path = AccelerationProfiles;
 			sourceTree = "<group>";
@@ -125,6 +125,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1204703122B863C2002A8BB9 /* Menu.xib in Resources */,
 				125929E020C9EA9900E5BF0F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,7 +139,6 @@
 			files = (
 				122E22D320CA191B00B37258 /* URL+Slash.swift in Sources */,
 				125929DE20C9EA9800E5BF0F /* AppDelegate.swift in Sources */,
-				1204702F22B8602C002A8BB9 /* main.swift in Sources */,
 				122E22D120C9FDAB00B37258 /* HIDDevice.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

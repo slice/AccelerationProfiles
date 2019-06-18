@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="NSApplication"/>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application">
+            <connections>
+                <outlet property="delegate" destination="MHI-Ck-hy1" id="J2M-dD-fBE"/>
+            </connections>
+        </customObject>
+        <customObject id="MHI-Ck-hy1" customClass="AppDelegate" customModule="AccelerationProfiles" customModuleProvider="target">
+            <connections>
+                <outlet property="menu" destination="N5p-Im-bTa" id="R6y-iq-5Mu"/>
+            </connections>
+        </customObject>
+        <menu id="N5p-Im-bTa">
+            <items>
+                <menuItem title="Edit Config..." keyEquivalent="," id="obd-EF-Rxi">
+                    <connections>
+                        <action selector="editConfigWithSender:" target="MHI-Ck-hy1" id="e4c-xg-Agt"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Reload" keyEquivalent="r" id="v9m-aw-qFS">
+                    <connections>
+                        <action selector="reloadConfigActionWithSender:" target="MHI-Ck-hy1" id="YDY-qu-QOh"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="Lmc-3T-ExD"/>
+                <menuItem title="© slice 2019" enabled="NO" id="7dh-gb-T7Q">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="GitHub Repo..." id="Eux-I9-1yy">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="openGitHubRepoWithSender:" target="MHI-Ck-hy1" id="TsA-GV-93E"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="9FR-XK-eXH"/>
+                <menuItem title="Quit" keyEquivalent="q" id="ZJy-HJ-4sg">
+                    <connections>
+                        <action selector="terminate:" target="-1" id="d8k-Bf-o9o"/>
+                    </connections>
+                </menuItem>
+            </items>
+            <point key="canvasLocation" x="99" y="121"/>
+        </menu>
+    </objects>
+</document>

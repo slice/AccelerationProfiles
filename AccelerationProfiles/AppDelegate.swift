@@ -2,8 +2,10 @@ import Cocoa
 
 typealias Profile = [String: Double]
 
+@NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    @IBOutlet weak var window: NSWindow!
+    @IBOutlet weak var menu: NSMenu!
+
     let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     var rules: [String: Profile] = [:]
     
@@ -121,35 +123,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func constructMenu() {
-        let menu = NSMenu()
-        menu.addItem(
-            withTitle: "Open Configuration",
-            action: #selector(self.openConfiguration),
-            keyEquivalent: "o"
-        )
-        menu.addItem(
-            withTitle: "Reload Configuration",
-            action: #selector(self.reloadConfiguration),
-            keyEquivalent: "r"
-        )
-        menu.addItem(
-            withTitle: "Quit",
-            action: #selector(self.quit),
-            keyEquivalent: "q"
-        )
-        self.item.menu = menu
+        self.item.menu = self.menu
     }
 
-    @objc func quit() {
-        NSRunningApplication.current.terminate()
+    func reloadConfig(sender: NSMenuItem) {
+        NSLog("Reloading configuration.")
+        do {
+            try self.loadConfiguration()
+        } catch {
+            NSLog("Error loading configuration: \(error)")
+
+            let alert = NSAlert()
+            alert.messageText = "Configuration Error"
+            alert.informativeText = error.localizedDescription
+            alert.addButton(withTitle: "OK")
+            alert.runModal()
+        }
     }
 
-    @objc func openConfiguration() {
-        NSLog("Opening configuration.")
-        NSWorkspace.shared.openFile(self.configPath.path)
-    }
-    
-    @objc func reloadConfiguration() {
+    func reloadConfig() {
         NSLog("Reloading configuration.")
         do {
             try self.loadConfiguration()
@@ -165,12 +157,27 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        self.reloadConfiguration()
+        self.reloadConfig()
         self.addImageToButton()
-        self.constructMenu()
+        // Bind NSStatusItem's menu to the menu in the xib.
+        self.item.menu = self.menu
         self.beginWatching()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
+    }
+}
+
+extension AppDelegate {
+    @IBAction func editConfig(sender: NSMenuItem) {
+        NSWorkspace.shared.openFile(self.configPath.path)
+    }
+
+    @IBAction func openGitHubRepo(sender: NSMenuItem) {
+        NSWorkspace.shared.open(URL(string: "https://github.com/slice/AccelerationProfiles")!)
+    }
+
+    @IBAction func reloadConfigAction(sender: NSMenuItem) {
+        self.reloadConfig()
     }
 }
