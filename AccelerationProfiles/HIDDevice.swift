@@ -6,9 +6,8 @@ fileprivate func withEventHandle(closure: (NXEventHandle) -> Void) {
     NXCloseEventStatus(handle)
 }
 
-/// A small abstraction over the mouse and trackpad HIDs (human interface device)
-/// that allows you to set and get the associated acceleration value through a
-/// single property.
+/// A small abstraction over the mouse and trackpad that allows the easy
+/// modification and access of their acceleration speeds.
 enum HIDDevice: String {
     case mouse
     case trackpad
@@ -26,7 +25,7 @@ enum HIDDevice: String {
 
     /// The acceleration of the device.
     ///
-    /// A value of -1.0 (intenrally 65535.0) signifies no acceleration.
+    /// A value of -1.0 (internally 65535.0) completely disables acceleration.
     var acceleration: Double {
         get {
             var speed: Double = 0.0
