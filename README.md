@@ -15,26 +15,33 @@ Sample configuration:
 
 ```json
 {
+  "*": {
+    "mouse": 6.0,
+    "trackpad": 1.0
+  },
   "com.googlecode.iterm2": {
     "mouse": 4.0,
     "touchpad": 0.85
   },
   "Xcode": {
     "mouse": 7.0
-  },
-  "*": {
-    "mouse": 6.0,
-    "trackpad": 1.0
   }
 }
 ```
 
-Specify the bundle identifier (like `com.apple.dt.Xcode`) or localized
-application name (like `Xcode`) as the key, then a device to acceleration
-mapping as the value. Two devices are supported: `mouse` and `trackpad`. They
-are both optional and the value is only changed if present. The acceleration
-values inherit from the previously set value, not the special default rule.
+For each app, specify the bundle identifier (like `com.apple.dt.Xcode`) or
+localized app name (like `Xcode`) as the key, then an object of devices to
+change the acceleration of. There are only two devices:
 
-The `*` rule is special — it acts as a default rule when a specific rule cannot
-be found. Remember that this does not work for individual values — the `*` rule
-is only processed when a rule for the app you just focused was not found.
+- `mouse`
+- `trackpad`
+
+A value of `-1.0` (a special case which is transformed to `65535.0`)
+effectively disables acceleration for that device.
+
+The `*` "app" is special--it acts as the default acceleration profile that is
+used when a specific one can't be found for an app.
+
+Acceleration speeds are retained from the value they were last set to. In other
+words, if you don't specify a speed, the previous speed will be kept. The
+correlating speed value from the default rule won't be used.
