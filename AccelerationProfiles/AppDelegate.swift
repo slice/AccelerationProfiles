@@ -60,7 +60,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func addImageToButton() {
         let button = self.item.button!
-        button.image = NSImage(named: "MenuBar")
+        button.image = NSImage(named: "CursorIcon")
     }
 
     func beginWatching() {
